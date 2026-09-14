@@ -182,7 +182,7 @@ export default function Home() {
     <main className="site-shell">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <header className={`site-header ${menuOpen ? "site-header--open" : ""}`}>
-        <a className="brand-lockup" href="#top" onClick={closeMenu} aria-label="Aelira Lung Care home">
+        <a className="brand-lockup" href={import.meta.env.BASE_URL} onClick={closeMenu} aria-label="Aelira Lung Care home">
           <img src={logoUrl} alt="Aelira Lung Care" />
         </a>
         <nav className="site-nav" aria-label="Main navigation">
