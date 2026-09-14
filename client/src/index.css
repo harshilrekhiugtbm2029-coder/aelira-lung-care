@@ -273,3 +273,28 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (prefers-reduced-motion: reduce) {
   .lung-study__image, .pulse-line path, .diagnostic-detail__graphic path, .condition-chip, .rehab-progress__track i, .rehab-path path, .rehab-path circle, .rehab-metric { animation: none; }
 }
+
+/* Hero source correction: show the complete anatomical lungs, not the cropped derivative. */
+.lung-study__image { left: 8%; top: 4%; width: 84%; height: 92%; object-fit: contain; object-position: center; }
+.study-card--feno { right: 2%; bottom: 19%; animation-delay: -3.2s; }
+.study-card--dlco { left: 1%; bottom: 12%; animation-delay: -5.1s; }
+.study-card--care { left: 28%; bottom: 1%; }
+.marquee-track { gap: 0; animation: marquee 28s linear infinite; will-change: transform; }
+.marquee-group { display: flex; align-items: center; gap: 30px; flex: 0 0 auto; padding-right: 30px; }
+@keyframes marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+@media (max-width:740px) {
+  .lung-study__image { left: 2%; top: 2%; width: 96%; height: 96%; }
+  .study-card--flow { left: 0; top: 10%; }
+  .study-card--air { right: 0; top: 25%; }
+  .study-card--care { left: 4%; bottom: 1%; }
+  .study-card--feno { right: 0; bottom: 20%; }
+  .study-card--dlco { left: 0; bottom: 11%; }
+  .study-card { max-width: 145px; }
+  .study-card strong { font-size: 12px; }
+}
+
+/* Keep the complete square anatomy inside the opening composition on desktop and mobile. */
+.lung-study__image { left: 12%; top: 7%; width: 76%; height: 78%; }
+@media (max-width:740px) {
+  .lung-study__image { left: 5%; top: 4%; width: 90%; height: 88%; }
+}

@@ -68,13 +68,15 @@ function BreathingLungs() {
       <div className="lung-study__orbit lung-study__orbit--outer" />
       <div className="lung-study__orbit lung-study__orbit--inner" />
       <div className="lung-study__scanline" />
-      <img className="lung-study__image" src={`${import.meta.env.BASE_URL}aelira-lungs-feathered.png`} alt="" />
+      <img className="lung-study__image" src={`${import.meta.env.BASE_URL}aelira-lungs-full.png`} alt="" />
       <div className="lung-study__dot lung-study__dot--one" />
       <div className="lung-study__dot lung-study__dot--two" />
       <div className="lung-study__axis"><span>R</span><i /><span>L</span></div>
-      <div className="study-card study-card--flow"><span>01 / PFT + DLCO</span><strong>PFT + DLCO</strong><small>flow + gas transfer</small></div>
-      <div className="study-card study-card--air"><span>02 / FOT TEST</span><strong>FOT / oscillometry</strong><small>small airway scan</small></div>
-      <div className="study-card study-card--care"><span>03 / FeNO</span><strong>FeNO</strong><small>airway inflammation</small></div>
+      <div className="study-card study-card--flow"><span>01 / PFT</span><strong>PFT</strong><small>Pulmonary Function test</small></div>
+      <div className="study-card study-card--air"><span>02 / FOT Test</span><strong>FOT Test</strong><small>Lung Oscillometry</small></div>
+      <div className="study-card study-card--care"><span>03 / Rehab</span><strong>Pulmonary Rehabilitation</strong><small>Structure Program</small></div>
+      <div className="study-card study-card--feno"><span>04 / FeNO Test</span><strong>FeNO Test</strong><small>Airway Inflammation</small></div>
+      <div className="study-card study-card--dlco"><span>05 / DLCO Test</span><strong>DLCO Test</strong><small>Gas Transfer</small></div>
       <div className="lung-study__footnote"><span className="readout-dot" /> Aelira / Green Park / 28° 33′ N</div>
     </div>
   );
@@ -222,7 +224,7 @@ export default function Home() {
       </section>
 
       <section className="marquee" aria-label="Aelira services">
-        <div className="marquee-track"><span>LUNG HEALTH</span><i>✳</i><span>CLINICAL CLARITY</span><i>✳</i><span>BETTER BREATHING</span><i>✳</i><span>LUNG HEALTH</span><i>✳</i><span>CLINICAL CLARITY</span><i>✳</i><span>BETTER BREATHING</span><i>✳</i></div>
+        <div className="marquee-track"><div className="marquee-group"><span>LUNG HEALTH</span><i>✳</i><span>CLINICAL CLARITY</span><i>✳</i><span>BETTER BREATHING</span><i>✳</i></div><div className="marquee-group" aria-hidden="true"><span>LUNG HEALTH</span><i>✳</i><span>CLINICAL CLARITY</span><i>✳</i><span>BETTER BREATHING</span><i>✳</i></div></div>
       </section>
 
       <section className="intro-section section-pad" id="care">
