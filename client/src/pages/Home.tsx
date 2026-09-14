@@ -72,18 +72,36 @@ function BreathingLungs() {
       <div className="lung-study__dot lung-study__dot--one" />
       <div className="lung-study__dot lung-study__dot--two" />
       <div className="lung-study__axis"><span>R</span><i /><span>L</span></div>
-      <div className="study-card study-card--flow"><span>01 / flow</span><strong>steady</strong><small>breath by breath</small></div>
-      <div className="study-card study-card--air"><span>02 / airways</span><strong>open</strong><small>room to do more</small></div>
-      <div className="study-card study-card--care"><span>03 / care plan</span><strong>personal</strong><small>built around you</small></div>
+      <div className="study-card study-card--flow"><span>01 / PFT + DLCO</span><strong>PFT + DLCO</strong><small>flow + gas transfer</small></div>
+      <div className="study-card study-card--air"><span>02 / FOT TEST</span><strong>FOT / oscillometry</strong><small>small airway scan</small></div>
+      <div className="study-card study-card--care"><span>03 / FeNO</span><strong>FeNO</strong><small>airway inflammation</small></div>
       <div className="lung-study__footnote"><span className="readout-dot" /> Aelira / Green Park / 28° 33′ N</div>
     </div>
   );
 }
 
-function PulseLine({ muted = false }: { muted?: boolean }) {
+const diagnosticWavePaths: Record<string, string> = {
+  pft: "M0 39H44C63 39 70 38 88 38L108 38L123 38L137 12L151 62L166 33L181 39H221C245 39 251 37 267 37L286 37L301 15L315 58L328 34L343 39H420",
+  fot: "M0 40C34 40 36 24 62 24S92 56 121 56S154 18 184 18S214 60 244 60S274 27 300 27S329 51 354 51S384 35 420 35",
+  feno: "M0 40C26 40 37 40 57 40C78 40 87 22 107 22C126 22 137 59 157 59C177 59 188 40 207 40C226 40 237 31 256 31C275 31 286 49 305 49C324 49 342 40 360 40H420",
+};
+
+const detailWavePaths: Record<string, string> = {
+  pft: "M0 122C27 122 30 119 53 119S77 109 95 107C117 104 123 149 144 149C165 149 165 74 183 74C202 74 203 130 226 130C248 130 245 53 266 53C286 53 285 117 307 117C330 117 328 90 346 90C367 90 369 121 420 121",
+  fot: "M0 130C33 130 31 91 68 91S101 153 139 153S172 55 208 55S243 126 279 126S312 80 349 80S382 111 420 111",
+  feno: "M0 126C28 126 45 126 66 126S96 78 122 78S151 145 178 145S204 110 230 110S259 64 286 64S313 121 341 121S376 96 420 96",
+};
+
+const diagnosticGraphicLabels: Record<string, [string, string, string]> = {
+  pft: ["flow", "volume", "gas transfer"],
+  fot: ["resistance", "reactance", "frequency"],
+  feno: ["NO", "airway", "inflammation"],
+};
+
+function PulseLine({ mode = "pft" }: { mode?: string }) {
   return (
-    <svg className={`pulse-line ${muted ? "pulse-line--muted" : ""}`} viewBox="0 0 420 72" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 39H58C75 39 77 38 90 38L108 38L124 38L139 11L153 61L169 33L181 39H229C246 39 248 37 260 37L277 37L294 16L308 58L323 34L335 39H420" />
+    <svg className={`pulse-line pulse-line--${mode}`} viewBox="0 0 420 72" preserveAspectRatio="none" aria-hidden="true">
+      <path d={diagnosticWavePaths[mode] ?? diagnosticWavePaths.pft} />
     </svg>
   );
 }
@@ -230,7 +248,7 @@ export default function Home() {
         <div className="section-index section-index--light" data-reveal>03 <span>Diagnostics</span></div>
         <div className="diagnostics-heading" data-reveal>
           <div><p className="eyebrow eyebrow--light">The breath check</p><h2>Less guessing.<br /><em>More knowing.</em></h2></div>
-          <div className="heading-sidecopy"><PulseLine /><p>Advanced lung tests for adults, children, athletes, smokers, post-COVID recovery and anyone who wants a clearer baseline.</p></div>
+          <div className="heading-sidecopy"><PulseLine mode={activeDiagnostic} /><p>Advanced lung tests for adults, children, athletes, smokers, post-COVID recovery and anyone who wants a clearer baseline.</p></div>
         </div>
         <div className="diagnostics-workbench" data-reveal>
           <div className="diagnostics-list" role="tablist" aria-label="Diagnostic tests">
@@ -244,7 +262,7 @@ export default function Home() {
           <div className={`diagnostic-detail diagnostic-detail--${active.accent}`} role="tabpanel">
             <div className="diagnostic-detail__top"><span>{active.short} / {active.label}</span><span className="detail-status"><i /> Available in Green Park</span></div>
             <div className="diagnostic-detail__body"><h3>{active.title}</h3><p>{active.body}</p><div className="diagnostic-meta"><span>{active.meta}</span><a href="#book">Book this test <ArrowUpRight size={15} /></a></div></div>
-            <div className="diagnostic-detail__graphic"><div className="graphic-grid" /><span className="graphic-label graphic-label--one">flow</span><span className="graphic-label graphic-label--two">volume</span><span className="graphic-label graphic-label--three">gas exchange</span><svg viewBox="0 0 420 190" preserveAspectRatio="none" aria-hidden="true"><path d="M0 122C27 122 30 119 53 119S77 109 95 107C117 104 123 149 144 149C165 149 165 74 183 74C202 74 203 130 226 130C248 130 245 53 266 53C286 53 285 117 307 117C330 117 328 90 346 90C367 90 369 121 420 121" /></svg></div>
+            <div className="diagnostic-detail__graphic"><div className="graphic-grid" /><span className="graphic-label graphic-label--one">{diagnosticGraphicLabels[active.id][0]}</span><span className="graphic-label graphic-label--two">{diagnosticGraphicLabels[active.id][1]}</span><span className="graphic-label graphic-label--three">{diagnosticGraphicLabels[active.id][2]}</span><svg viewBox="0 0 420 190" preserveAspectRatio="none" aria-hidden="true"><path d={detailWavePaths[active.id]} /></svg></div>
           </div>
         </div>
       </section>
@@ -259,8 +277,11 @@ export default function Home() {
 
       <section className="rehab-section" id="rehab">
         <div className="rehab-visual" data-reveal>
-          <div className="rehab-ring rehab-ring--one" /><div className="rehab-ring rehab-ring--two" /><div className="rehab-breathe"><span className="rehab-breathe__number">04</span><Wind size={45} strokeWidth={1.2} /><span className="rehab-breathe__caption">breathe<br />stronger</span></div>
-          <div className="rehab-orbit rehab-orbit--one"><span>move</span></div><div className="rehab-orbit rehab-orbit--two"><span>recover</span></div>
+          <div className="rehab-visual__grid" />
+          <div className="rehab-progress"><span>PROGRAM / RESPIRATORY CAPACITY</span><strong>week 03 <small>of 08</small></strong><div className="rehab-progress__track"><i /></div><em>the aim is not to push harder.<br />it is to make more possible.</em></div>
+          <svg className="rehab-path" viewBox="0 0 500 330" preserveAspectRatio="none" aria-hidden="true"><path d="M18 285C82 284 67 226 121 226S149 286 205 286S234 155 290 155S322 231 369 231S399 84 482 84" /><circle cx="121" cy="226" r="5" /><circle cx="290" cy="155" r="5" /><circle cx="482" cy="84" r="5" /></svg>
+          <div className="rehab-breathe"><span className="rehab-breathe__number">04</span><Wind size={42} strokeWidth={1.2} /><strong>+24%</strong><span className="rehab-breathe__caption">walking<br />capacity</span></div>
+          <div className="rehab-metric rehab-metric--one"><span>01</span><strong>breathing</strong><small>retrained</small></div><div className="rehab-metric rehab-metric--two"><span>02</span><strong>strength</strong><small>rebuilt</small></div><div className="rehab-metric rehab-metric--three"><span>03</span><strong>confidence</strong><small>returned</small></div>
         </div>
         <div className="rehab-copy" data-reveal><p className="eyebrow">Pulmonary rehabilitation</p><h2>Make everyday<br /><em>feel easier.</em></h2><p className="rehab-lead">Breathlessness can make life smaller. Our structured, personalised programme helps you break that cycle — safely, gradually and with a clinical team beside you.</p><div className="rehab-points"><div><Check size={16} /><span>Supervised exercise + breathing retraining</span></div><div><Check size={16} /><span>Airway clearance + inhaler technique</span></div><div><Check size={16} /><span>Nutrition, education and confidence</span></div></div><a className="button button--dark" href="#book">Explore pulmonary rehab <ArrowUpRight size={17} /></a></div>
       </section>

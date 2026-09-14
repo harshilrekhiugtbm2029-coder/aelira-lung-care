@@ -232,3 +232,44 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 980px) and (min-width: 741px) {
   .hero h1 { font-size: clamp(56px,7vw,84px); }
 }
+
+/* Interaction pass: motion should explain the care, not decorate it. */
+.lung-study__field { border: 0; background: radial-gradient(circle at 48% 43%, rgba(249,249,239,.32), transparent 45%); }
+.lung-study__image { animation: anatomicalBreathe 6s cubic-bezier(.45,0,.25,1) infinite; }
+@keyframes anatomicalBreathe { 0%,100% { transform: scale(.92) translateY(8px); } 48% { transform: scale(1.065) translateY(-7px); } }
+.pulse-line path { transform-box: fill-box; transform-origin: center; animation: waveOscillate 2.8s ease-in-out infinite, drawPulse 5s linear infinite; }
+.diagnostic-detail__graphic path { transform-box: fill-box; transform-origin: center; animation: waveOscillate 2.4s ease-in-out infinite, drawPulse 5s linear infinite; }
+@keyframes waveOscillate { 0%,100% { transform: translateY(2px) scaleY(.84); } 50% { transform: translateY(-3px) scaleY(1.08); } }
+.condition-cloud { align-content: center; padding: 62px 38px 118px; }
+.condition-chip { animation: chipFloat 5.5s ease-in-out infinite; transition: transform .2s var(--ease-out), background-color .2s ease, box-shadow .2s ease; }
+.condition-chip:hover { z-index: 2; transform: translateY(-7px) rotate(0deg) scale(1.04); box-shadow: 0 12px 22px rgba(30,77,59,.12); }
+.condition-chip--1 { animation-delay: -1.2s; }.condition-chip--2 { animation-delay: -2.3s; }.condition-chip--0 { animation-delay: -3.4s; }
+@keyframes chipFloat { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-7px) rotate(1deg); } }
+.condition-cloud__note { right: 50%; bottom: 28px; justify-content: center; width: max-content; transform: translateX(50%); }
+.condition-cloud__note span { white-space: nowrap; }
+.rehab-visual { align-items: stretch; justify-content: stretch; background: var(--aelira-sage); }
+.rehab-visual__grid { position: absolute; inset: 0; opacity: .42; background-image: linear-gradient(rgba(30,77,59,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(30,77,59,.1) 1px, transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(135deg, transparent 0%, black 36%, black 100%); }
+.rehab-progress { position: absolute; z-index: 3; top: 52px; left: 54px; width: min(330px, 52%); color: var(--aelira-deeper); }
+.rehab-progress > span { display: block; margin-bottom: 15px; color: var(--aelira-muted); font-size: 9px; letter-spacing: .14em; }
+.rehab-progress > strong { display: block; font: 700 28px AeliraGilroy,Arial,sans-serif; text-transform: uppercase; }.rehab-progress > strong small { color: var(--aelira-muted); font: 400 12px Arial,sans-serif; }
+.rehab-progress__track { height: 5px; margin: 16px 0 16px; overflow: hidden; background: rgba(30,77,59,.16); }.rehab-progress__track i { display: block; width: 38%; height: 100%; background: var(--aelira-deep); animation: progressPulse 5s ease-in-out infinite; }
+.rehab-progress em { display: block; color: rgba(30,77,59,.68); font-size: 11px; line-height: 1.4; }
+.rehab-path { position: absolute; inset: 24% 7% 11% 6%; z-index: 1; width: 87%; height: 65%; overflow: visible; }.rehab-path path { fill: none; stroke: var(--aelira-deep); stroke-width: 2; stroke-dasharray: 700; animation: rehabLineDraw 6s linear infinite; }.rehab-path circle { fill: var(--aelira-paper); stroke: var(--aelira-deep); stroke-width: 2; animation: rehabNodePulse 3s ease-in-out infinite; }.rehab-path circle:nth-of-type(2) { animation-delay: -1s; }.rehab-path circle:nth-of-type(3) { animation-delay: -2s; }
+.rehab-breathe { width: 176px; height: 176px; margin: auto; box-shadow: 0 20px 50px rgba(30,77,59,.16); }.rehab-breathe strong { margin-top: 8px; color: var(--aelira-deep); font: 700 23px AeliraGilroy,Arial,sans-serif; }.rehab-breathe__caption { margin-top: 6px; }
+.rehab-metric { position: absolute; z-index: 3; display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; border-left: 2px solid var(--aelira-deep); background: rgba(249,249,239,.6); animation: metricFloat 6s ease-in-out infinite; }.rehab-metric span { color: var(--aelira-muted); font-size: 8px; }.rehab-metric strong { color: var(--aelira-deep); font: 700 15px AeliraGilroy,Arial,sans-serif; }.rehab-metric small { color: rgba(30,77,59,.64); font-size: 9px; }.rehab-metric--one { left: 12%; bottom: 15%; }.rehab-metric--two { right: 13%; top: 43%; animation-delay: -2s; }.rehab-metric--three { right: 15%; bottom: 10%; animation-delay: -4s; }
+@keyframes progressPulse { 0%,100% { width: 34%; } 50% { width: 46%; } }
+@keyframes rehabLineDraw { 0% { stroke-dashoffset: 700; } 45%,100% { stroke-dashoffset: 0; } }
+@keyframes rehabNodePulse { 0%,100% { transform: scale(.8); transform-origin: center; } 50% { transform: scale(1.35); transform-origin: center; } }
+@keyframes metricFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@media (max-width:740px) {
+  .condition-cloud { min-height: 360px; padding: 52px 20px 110px; }
+  .condition-cloud__note { bottom: 24px; }
+  .rehab-visual { min-height: 510px; }
+  .rehab-progress { top: 30px; left: 25px; width: 250px; }
+  .rehab-path { inset: 29% 4% 11% 3%; width: 94%; height: 58%; }
+  .rehab-breathe { width: 142px; height: 142px; }
+  .rehab-metric--one { left: 7%; bottom: 10%; }.rehab-metric--two { right: 6%; top: 42%; }.rehab-metric--three { right: 5%; bottom: 5%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lung-study__image, .pulse-line path, .diagnostic-detail__graphic path, .condition-chip, .rehab-progress__track i, .rehab-path path, .rehab-path circle, .rehab-metric { animation: none; }
+}
