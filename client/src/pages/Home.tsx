@@ -63,24 +63,19 @@ const conditions = [
 
 function BreathingLungs() {
   return (
-    <div className="lung-visual" aria-label="Animated illustration of breathing lungs" role="img">
-      <div className="lung-visual__halo" />
-      <svg className="lung-visual__svg" viewBox="0 0 560 610" fill="none" aria-hidden="true">
-        <path className="lung-visual__trachea" d="M280 68V206M280 206C254 212 239 229 223 253M280 206C306 212 321 229 337 253" />
-        <path className="lung-visual__left" d="M269 211C218 186 154 205 113 256C71 309 67 383 75 457C82 521 112 561 171 554C214 549 239 518 251 476C264 429 261 374 267 324C272 281 291 231 269 211Z" />
-        <path className="lung-visual__right" d="M291 211C342 186 406 205 447 256C489 309 493 383 485 457C478 521 448 561 389 554C346 549 321 518 309 476C296 429 299 374 293 324C288 281 269 231 291 211Z" />
-        <path className="lung-visual__bronchi" d="M280 211C254 252 231 270 204 298M280 211C306 252 329 270 356 298M204 298C183 319 169 344 157 371M204 298C215 328 219 354 214 384M356 298C377 319 391 344 403 371M356 298C345 328 341 354 346 384M157 371C137 390 125 413 120 438M403 371C423 390 435 413 440 438" />
-        <circle className="lung-visual__node node-a" cx="157" cy="371" r="7" />
-        <circle className="lung-visual__node node-b" cx="403" cy="371" r="7" />
-        <circle className="lung-visual__node node-c" cx="214" cy="384" r="5" />
-        <circle className="lung-visual__node node-d" cx="346" cy="384" r="5" />
-      </svg>
-      <div className="lung-visual__readout">
-        <span className="readout-dot" />
-        <span>breath pattern</span>
-        <strong>steady</strong>
-      </div>
-      <div className="lung-visual__caption">inhale / exhale / repeat</div>
+    <div className="lung-study" aria-label="Animated lung study showing Aelira's breathing care approach" role="img">
+      <div className="lung-study__field" />
+      <div className="lung-study__orbit lung-study__orbit--outer" />
+      <div className="lung-study__orbit lung-study__orbit--inner" />
+      <div className="lung-study__scanline" />
+      <img className="lung-study__image" src={`${import.meta.env.BASE_URL}aelira-lungs-feathered.png`} alt="" />
+      <div className="lung-study__dot lung-study__dot--one" />
+      <div className="lung-study__dot lung-study__dot--two" />
+      <div className="lung-study__axis"><span>R</span><i /><span>L</span></div>
+      <div className="study-card study-card--flow"><span>01 / flow</span><strong>steady</strong><small>breath by breath</small></div>
+      <div className="study-card study-card--air"><span>02 / airways</span><strong>open</strong><small>room to do more</small></div>
+      <div className="study-card study-card--care"><span>03 / care plan</span><strong>personal</strong><small>built around you</small></div>
+      <div className="lung-study__footnote"><span className="readout-dot" /> Aelira / Green Park / 28° 33′ N</div>
     </div>
   );
 }
@@ -190,24 +185,22 @@ export default function Home() {
 
       <div className="announcement-bar"><span className="announcement-pulse" /> Lung care for adults, children and everyone in between <span className="announcement-separator">·</span> Green Park, New Delhi</div>
 
-      <section className="hero" id="top">
+      <section className="hero hero--light" id="top">
         <div className="hero-grid" />
         <div className="hero-copy" id="main-content">
-          <div className="eyebrow eyebrow--light" data-reveal><span className="eyebrow-mark">01</span> The lung health centre</div>
-          <h1 data-reveal><span>Feel more</span><em>like yourself.</em></h1>
-          <p className="hero-intro" data-reveal>Specialist lung care, clear answers and personalised rehabilitation — designed to help you breathe better and do more.</p>
+          <div className="eyebrow" data-reveal><span className="eyebrow-mark">01</span> Lung health, made personal</div>
+          <h1 data-reveal><span>Care that</span><em>changes how</em><strong>you breathe.</strong></h1>
+          <p className="hero-intro" data-reveal>Specialist lung diagnostics and pulmonary rehabilitation for people who want clearer answers — and more room for life.</p>
           <div className="hero-actions" data-reveal>
-            <a className="button button--light" href="#book">Start your lung check <ArrowUpRight size={17} /></a>
-            <a className="button button--ghost-light" href="#care">Explore care paths <ArrowDownRight size={17} /></a>
+            <a className="button button--dark" href="#book">Start your lung check <ArrowUpRight size={17} /></a>
+            <a className="button button--ghost-dark" href="#care">See how we care <ArrowDownRight size={17} /></a>
           </div>
-          <div className="hero-footnote" data-reveal><span className="hero-footnote__line" /> No waiting room theatre. Just thoughtful, evidence-based care.</div>
+          <div className="hero-footnote" data-reveal><span className="hero-footnote__line" /> One centre for tests, insight and the next breath.</div>
         </div>
         <div className="hero-visual" data-reveal>
           <BreathingLungs />
-          <div className="hero-side-note"><span>01</span><span>air in</span></div>
-          <div className="hero-side-note hero-side-note--bottom"><span>02</span><span>life out</span></div>
         </div>
-        <div className="hero-scroll">Scroll to explore <ArrowDownRight size={15} /></div>
+        <div className="hero-scroll hero-scroll--dark">Scroll to explore <ArrowDownRight size={15} /></div>
       </section>
 
       <section className="marquee" aria-label="Aelira services">
