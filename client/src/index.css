@@ -298,3 +298,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (max-width:740px) {
   .lung-study__image { left: 5%; top: 4%; width: 90%; height: 88%; }
 }
+
+/* Seamless marquee correction: four identical units guarantee edge coverage on wide screens. */
+.marquee { overflow: hidden; }
+.marquee-track { display: flex; width: max-content; gap: 0; animation: marquee 24s linear infinite; }
+.marquee-group { display: flex; flex: 0 0 auto; align-items: center; gap: 30px; padding-right: 30px; }
+@keyframes marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-25%,0,0); } }

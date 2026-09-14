@@ -224,7 +224,7 @@ export default function Home() {
       </section>
 
       <section className="marquee" aria-label="Aelira services">
-        <div className="marquee-track"><div className="marquee-group"><span>LUNG HEALTH</span><i>✳</i><span>CLINICAL CLARITY</span><i>✳</i><span>BETTER BREATHING</span><i>✳</i></div><div className="marquee-group" aria-hidden="true"><span>LUNG HEALTH</span><i>✳</i><span>CLINICAL CLARITY</span><i>✳</i><span>BETTER BREATHING</span><i>✳</i></div></div>
+        <div className="marquee-track"><div className="marquee-group"><span>LUNG HEALTH</span><i>✳</i><span>CLINICAL CLARITY</span><i>✳</i><span>BETTER BREATHING</span><i>✳</i></div><div className="marquee-group" aria-hidden="true"><span>LUNG HEALTH</span><i>✳</i><span>CLINICAL CLARITY</span><i>✳</i><span>BETTER BREATHING</span><i>✳</i></div><div className="marquee-group" aria-hidden="true"><span>LUNG HEALTH</span><i>✳</i><span>CLINICAL CLARITY</span><i>✳</i><span>BETTER BREATHING</span><i>✳</i></div><div className="marquee-group" aria-hidden="true"><span>LUNG HEALTH</span><i>✳</i><span>CLINICAL CLARITY</span><i>✳</i><span>BETTER BREATHING</span><i>✳</i></div></div>
       </section>
 
       <section className="intro-section section-pad" id="care">
